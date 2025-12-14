@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Municipal Government Systems</title>
+
+  <style>
+    * { box-sizing: border-box; font-family: Arial, Helvetica, sans-serif; }
+    body { margin: 0; background-color: #f4f6f9; color: #333; }
+
+    /* HEADER */
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logout-btn {
+      background: #e74c3c;
+      border: none;
+      padding: 4px 10px;
+      font-size: 12px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover { background: #c0392b; }
+
+    /* NAVIGATION */
+    nav {
+      background-color: #34495e;
+      display: flex;
+      padding: 10px 24px;
+      gap: 16px;
+    }
+
+    nav a {
+      color: #ecf0f1;
+      text-decoration: none;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    nav a:hover { background-color: #2c3e50; }
+
+    .page { display: none; padding: 24px; }
+    .active { display: block; }
+
+    /* LOGIN BOX */
+    .login-box {
+      max-width: 350px;
+      margin: 80px auto;
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .login-box button:hover { background: #2980b9; }
+
+    /* DASHBOARD CARDS */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* TABLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    th { background: #2c3e50; color: white; }
+
+    /* FORMS */
+    .form-box {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-top: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      padding: 10px 14px;
+      background: #3498db;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover { background: #2980b9; }
+
+    footer {
+      text-align: center;
+      padding: 14px;
+      background-color: #ecf0f1;
+      font-size: 13px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ LOGIN PAGE -->
+<div id="login" class="page active">
+  <div class="login-box">
+    <h2>Login</h2>
+    <p>Enter any username and password to continue.</p>
+
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+  </div>
+</div>
+
+<!-- ✅ MAIN SYSTEM -->
+<div id="system" style="display:none;">
+
+<header>
+  <h1>Municipal Government Office</h1>
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+<nav>
+  <a data-page="dashboard">Dashboard</a>
+  <a data-page="citizen">Citizen Records</a>
+  <a data-page="tax">Tax Collection</a>
+  <a data-page="permits">Permits & Licensing</a>
+  <a data-page="reports">Reports</a>
+</nav>
+
+<!-- ✅ ✅ ✅ UPDATED DASHBOARD PAGE -->
+<div id="dashboard" class="page active">
+  <h2>System Overview</h2>
+  <p>This page represents the integrated information systems of the Municipal Government Office.</p>
+
+  <!-- ✅ QUICK STATS -->
+  <div class="dashboard">
+    <div class="card">
+      <h2>👥 Citizens</h2>
+      <p>Total Registered: <strong>12,540</strong></p>
+      <p style="color:#3498db;">██████████░░ 80%</p>
+    </div>
+
+    <div class="card">
+      <h2>💰 Taxes</h2>
+      <p>Collected This Month: <strong>₱1,245,000</strong></p>
+      <p style="color:#2ecc71;">█████████████░ 95%</p>
+    </div>
+
+    <div class="card">
+      <h2>📝 Permits</h2>
+      <p>Issued This Year: <strong>342</strong></p>
+      <p style="color:#f1c40f;">██████░░░░░░ 60%</p>
+    </div>
+  </div>
+
+  <!-- ✅ SYSTEM MODULE CARDS -->
+  <div class="dashboard" style="margin-top: 20px;">
+    <div class="card">
+      <h2>Citizen Record Management System (CRMS)</h2>
+      <p>Manages birth, marriage, death, and residency records.</p>
+    </div>
+
+    <div class="card">
+      <h2>Tax Collection System (TCS)</h2>
+      <p>Handles tax assessment, billing, and payment processing.</p>
+    </div>
+
+    <div class="card">
+      <h2>Permit and Licensing System (PLS)</h2>
+      <p>Facilitates business permit and license applications.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ CITIZEN PAGE -->
+<div id="citizen" class="page">
+  <h2>Citizen Record Management System</h2>
+  <p>This module manages birth, marriage, death, and residency records.</p>
+
+  <h3>Sample Citizen Records</h3>
+  <table>
+    <tr><th>ID</th><th>Name</th><th>Record Type</th><th>Status</th></tr>
+    <tr><td>001</td><td>Juan Dela Cruz</td><td>Birth Certificate</td><td>Issued</td></tr>
+    <tr><td>002</td><td>Maria Santos</td><td>Residency</td><td>Pending</td></tr>
+    <tr><td>003</td><td>Carlos Reyes</td><td>Death Certificate</td><td>Issued</td></tr>
+  </table>
+
+  <h3>Request New Record</h3>
+  <div class="form-box">
+    <label>Full Name</label>
+    <input type="text">
+
+    <label>Record Type</label>
+    <select>
+      <option>Birth Certificate</option>
+      <option>Marriage Certificate</option>
+      <option>Death Certificate</option>
+      <option>Residency</option>
+    </select>
+
+    <button>Submit Request</button>
+  </div>
+</div>
+
+<!-- ✅ TAX PAGE -->
+<div id="tax" class="page">
+  <h2>Tax Collection System</h2>
+  <p>This module handles tax assessment, billing, and payment processing.</p>
+
+  <h3>Taxpayer Assessment Form</h3>
+  <div class="form-box">
+    <label>Taxpayer Name</label>
+    <input type="text">
+
+    <label>Tax Type</label>
+    <select>
+      <option>Real Property Tax</option>
+      <option>Business Tax</option>
+      <option>Community Tax</option>
+    </select>
+
+    <label>Amount</label>
+    <input type="number">
+
+    <button>Submit Assessment</button>
+  </div>
+
+  <h3>Recent Payments</h3>
+  <table>
+    <tr><th>OR Number</th><th>Name</th><th>Amount</th><th>Date</th></tr>
+    <tr><td>1001</td><td>Juan Dela Cruz</td><td>₱1,200</td><td>Jan 10</td></tr>
+    <tr><td>1002</td><td>Maria Santos</td><td>₱850</td><td>Jan 12</td></tr>
+  </table>
+</div>
+
+<!-- ✅ PERMITS PAGE -->
+<div id="permits" class="page">
+  <h2>Permit and Licensing System</h2>
+  <p>This module processes business permits and licenses.</p>
+
+  <h3>Business Permit Application</h3>
+  <div class="form-box">
+    <label>Business Name</label>
+    <input type="text">
+
+    <label>Business Type</label>
+    <select>
+      <option>Retail</option>
+      <option>Food Service</option>
+      <option>Manufacturing</option>
+      <option>Online Business</option>
+    </select>
+
+    <label>Owner Name</label>
+    <input type="text">
+
+    <button>Submit Application</button>
+  </div>
+
+  <h3>Approved Permits</h3>
+  <table>
+    <tr><th>Permit No.</th><th>Business Name</th><th>Status</th></tr>
+    <tr><td>PL-2025-001</td><td>ABC Store</td><td>Approved</td></tr>
+    <tr><td>PL-2025-002</td><td>Maria's Eatery</td><td>Released</td></tr>
+  </table>
+</div>
+
+<!-- ✅ REPORTS PAGE -->
+<div id="reports" class="page">
+  <h2>Reports & Analytics</h2>
+  <p>This module generates consolidated reports for decision-making.</p>
+
+  <ul>
+    <li>📊 Total Citizens Registered: 12,540</li>
+    <li>📈 Total Taxes Collected This Month: ₱1,245,000</li>
+    <li>📉 Permits Issued This Year: 342</li>
+  </ul>
+
+  <h3>Visual Summary (Mini Graphs)</h3>
+
+  <div class="card" style="max-width: 400px; font-size: 14px; line-height: 1.8;">
+    <p>👥 Citizens: <span style="color:#3498db;">██████████░░</span> 80%</p>
+    <p>💰 Taxes: <span style="color:#2ecc71;">█████████████░</span> 95%</p>
+    <p>📝 Permits: <span style="color:#f1c40f;">██████░░░░░░</span> 60%</p>
+  </div>
+</div>
+
+<footer>
+  © 2025 Municipal Government Office
+</footer>
+
+</div>
+
+<script>
+  function login() {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("system").style.display = "block";
+  }
+
+  function logout() {
+    document.getElementById("system").style.display = "none";
+    document.getElementById("login").style.display = "block";
+
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById("dashboard").classList.add("active");
+  }
+
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", () => {
+      const target = link.getAttribute("data-page");
+
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(target).classList.add("active");
+    });
+  });
+</script>
+
+</body>
+</html>
